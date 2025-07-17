@@ -24,9 +24,9 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-registerLicense(
-  import.meta.env.VITE_SYNC_FUSION_LICENSE_KEY
-)
+registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY)
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
