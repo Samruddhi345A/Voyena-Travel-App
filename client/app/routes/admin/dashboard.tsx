@@ -1,9 +1,22 @@
 import { Header, StatsCard, TripCard } from 'components'
 import { dashboardStats, user, allTrips } from '~/constants'
+import type { Route } from './+types/dashboard'
 
   const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } = dashboardStats
+  
+export async function clientLoader() {
+  try{
+    const res= await fetch('http://localhost:5000/api/auth/user',{credentials:"include"})
+    const user= await res.json()
+    return user?._id? user : null
+  }catch(err){
+    console.log("Error Fetching User",err)
+     return null
+  }
+}
+const dashboard = ({loaderData}:Route.ComponentProps) => {
 
-const dashboard = () => {
+  const user = loaderData as User | null
   
   return (
     <main className='dashboard wrapper'>

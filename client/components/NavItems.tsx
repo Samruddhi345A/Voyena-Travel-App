@@ -5,7 +5,7 @@ import { sidebarItems } from "~/constants"
 const NavItems = ({handleClick}:{handleClick:()=>void}) => {
     const user = useLoaderData()
     const navigate = useNavigate()
-    console.log(user)
+    
     const  handleLogout = async() => {
         try{
             await fetch("http://localhost:5000/api/auth/logout",{method:"GET",credentials:"include"})
@@ -38,7 +38,7 @@ const NavItems = ({handleClick}:{handleClick:()=>void}) => {
                     ))}
                 </nav>
                 <footer className="nav-footer">
-                    <img src={user?.imageUrl || '/assets/images/david.wedp'} alt={user?.name || "user"} />
+                    <img src={user?.imageUrl || '/assets/images/david.wedp'} referrerPolicy="no-referrer" alt={user?.name || "user"} />
 
                     <article>
                         <h3>{user?.name}</h3>

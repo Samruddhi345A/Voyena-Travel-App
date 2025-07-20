@@ -11,14 +11,14 @@ let toggleSide = () => sidebar.toggle();
     <div className='mobile-sidebar wrapper'>
         <header>
             <Link to='/' >
-            <img src='assets/icons/logo.svg' alt='logo' className='size-[30px]' />
+            <img src='/assets/icons/logo.svg' alt='logo' className='size-[30px]' />
             <h1>
                 Voyena
             </h1>
             </Link>
          
             <button onClick={toggleSide}>
-                <img src='assets/icons/menu.svg' alt='menu' className='size-7'/>
+                <img src='/assets/icons/menu.svg' alt='menu' className='size-7'/>
             </button>
         </header>
                   

@@ -4,13 +4,18 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
+    "dev": "set NODE_OPTIONS=--import ./instrument.server.mjs && react-router dev",
+    "start": "set NODE_OPTIONS=--import ./instrument.server.mjs && react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@google/genai": "^1.10.0",
+    "@google/generative-ai": "^0.24.1",
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
+    "@sentry/profiling-node": "^9.40.0",
+    "@sentry/react-router": "^9.40.0",
+    "@sentry/tracing": "^7.120.3",
     "@syncfusion/ej2-base": "^30.1.38",
     "@syncfusion/ej2-navigations": "^30.1.39",
     "@syncfusion/ej2-react-buttons": "^30.1.37",
