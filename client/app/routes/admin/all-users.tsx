@@ -37,7 +37,6 @@ const allUsers = ({loaderData}:Route.ComponentProps) => {
 
        <ColumnDirective field='joinedAt' headerText='Date Joined' width='140' textAlign='Left' 
        template={({joinedAt}:{joinedAt:string})=>formatDate(joinedAt) }/>
-       <ColumnDirective field="itineraryCreated" headerText="Trip Created" width='130' textAlign='Left' />
        <ColumnDirective field="status" headerText="Status" width='100' textAlign='Left'
        template={({status}:UserData)=>(
          <article className={cn("status-column", status ==="user"?"bg-success-50":"bg-light-100")}>

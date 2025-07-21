@@ -77,6 +77,7 @@ const createTrip = ({loaderData}:Route.ComponentProps) => {
                 setloading(false)
                 return
             }
+            console.log(formData.duration)
             try {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/create-trips`, {
                     method: "POST",

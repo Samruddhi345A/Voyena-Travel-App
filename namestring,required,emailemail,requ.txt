@@ -1,0 +1,3 @@
+name:string,required,email:email,required,accountid:string,required,imageUrl:string,joinedAtL:Datetime,required,status:enum,tyoe string, elements:user,admin, ddefault :user
+
+trip:tripDetail:string,required, imageUrls:string,array, createdAt:datetime,required, payment_link:url, userId: String

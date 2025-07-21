@@ -11,10 +11,6 @@ Sentry.init({
  integrations: [
    Sentry.reactRouterTracingIntegration(),
    Sentry.replayIntegration(),
-   Sentry.feedbackIntegration({
-     // Additional SDK configuration goes in here, for example:
-     colorScheme: "system",
-   }),
  ],
  // Enable logs to be sent to Sentry
  _experiments: { enableLogs: true },

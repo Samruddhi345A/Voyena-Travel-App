@@ -238,7 +238,7 @@
         }
       }
     }
-    .title {
+    .title{
       @apply flex justify-between gap-5;
 
       article {

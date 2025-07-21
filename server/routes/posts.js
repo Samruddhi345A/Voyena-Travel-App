@@ -41,7 +41,7 @@ function parseMarkdownToJson(markdownText) {
 router.post("/create-trips", async (req, res) => {
   const {
     country,
-    numberOfDays,
+    duration,
     travelStyle,
     interests,
     budget,
@@ -52,7 +52,7 @@ router.post("/create-trips", async (req, res) => {
   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
 
   try {
-   const prompt = `Generate a ${numberOfDays}-day travel itinerary for ${country} based on the following user information:
+   const prompt = `Generate a ${duration}-day travel itinerary for ${country} based on the following user information:
         Budget: '${budget}'
         Interests: '${interests}'
         TravelStyle: '${travelStyle}'
@@ -62,7 +62,7 @@ router.post("/create-trips", async (req, res) => {
         "name": "A descriptive title for the trip",
         "description": "A brief description of the trip and its highlights not exceeding 100 words",
         "estimatedPrice": "Lowest average price for the trip in USD, e.g.$price",
-        "duration": ${numberOfDays},
+        "duration": ${duration},
         "budget": "${budget}",
         "travelStyle": "${travelStyle}",
         "country": "${country}",
@@ -135,4 +135,35 @@ res.status(201).json({ id: savedTrip._id });
   }
 });
 
+router.get("/getAllTrips", async (req, res) => {
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = parseInt(req.query.offset) || 0;
+  try {
+    const trips = await Trip.find().sort({createdAt:-1}).skip(offset).limit(limit);
+    const total = await User.countDocuments();
+    if (total === 0) {
+      return res.status(200).json({ trips: [], total: 0 });
+    }
+    res.status(200).json({ trips, total });
+  } catch (err) {
+    console.log("Error fetching trips:", err);
+    res.status(500).json({ error: "Failed to fetch trips" });
+
+  }
+});
+
+router.get("/getTrip/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const trip = await Trip.findById(id);
+    if (!trip) {
+      return res.status(404).json({ error: "Trip not found" });
+    }
+    console.log("Trip fetched successfully:", trip);
+    res.status(200).json(trip);
+  } catch (err) {
+    console.log("Error fetching trip:", err);
+    res.status(500).json({ error: "Failed to fetch trip" });
+  }
+});
 module.exports = router;
